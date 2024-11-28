@@ -1,7 +1,17 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {    
+
+    public static Player Instance {get; private set;}
+    
+    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+    public class OnSelectedCounterChangedEventArgs : EventArgs
+    {
+        public ClearCounter selectedCounter;
+    }
+
     [SerializeField] private float moveSpeed;
     [SerializeField] private GameInput gameInput;
     [SerializeField] private LayerMask countersLayerMask;
@@ -9,6 +19,15 @@ public class Player : MonoBehaviour
     private Vector3 lastInteractDir;
     private ClearCounter selectedCounter;
 
+
+    void Awake()
+    {
+        if(Instance != null)
+        {
+            Debug.LogError("There is more than one Player instance");
+        }
+        Instance = this;
+    }
     void Start()
     {
         gameInput.OnInteractAction += GameInput_OnInteractAction;
@@ -55,20 +74,20 @@ public class Player : MonoBehaviour
                 // Has ClearCounter Script
                 if (clearCounter != selectedCounter)
                 {
-                    selectedCounter = clearCounter;
+                    SetSelectedCounter(clearCounter);
                 }
+                
+            }    
             else
             {
-                selectedCounter = null;
+                SetSelectedCounter(null);
             }
-        }
+        }    
         else
         {
-            selectedCounter = null;
+            SetSelectedCounter(null);
         }
-        }
-
-        Debug.Log(selectedCounter);
+        
 
     }
 
@@ -116,4 +135,16 @@ public class Player : MonoBehaviour
         float rotationSpeed = 10f;
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotationSpeed);
     }
+
+    private void SetSelectedCounter(ClearCounter selectedCounter)
+    {
+        this.selectedCounter = selectedCounter;
+
+        OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs{
+            selectedCounter = selectedCounter
+        });
+
+    }
+
+
 }

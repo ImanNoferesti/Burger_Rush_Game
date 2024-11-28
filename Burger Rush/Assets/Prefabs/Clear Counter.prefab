@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3599350186913944218}
   - component: {fileID: 1034507445433950469}
   - component: {fileID: 9015928545432935590}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Clear Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2309771134533623370}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00000032782552}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 2.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -214,6 +214,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5215690252827585041}
   m_SourcePrefab: {fileID: 100100000, guid: 0004cb1e11ad014419b943c7da960724, type: 3}
+--- !u!1 &1528615184787728981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8489276541531669327, guid: 0004cb1e11ad014419b943c7da960724, type: 3}
+  m_PrefabInstance: {fileID: 6987690376664918298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6865931591993675184 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4589716710238282922, guid: 0004cb1e11ad014419b943c7da960724, type: 3}
@@ -231,6 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de90541022f0acc49887cac5de74736a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clearCounter: {fileID: 9015928545432935590}
+  visualGameObject: {fileID: 1528615184787728981}
 --- !u!4 &6865931591993675185 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4589716710238282923, guid: 0004cb1e11ad014419b943c7da960724, type: 3}
